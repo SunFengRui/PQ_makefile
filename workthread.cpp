@@ -1220,7 +1220,7 @@ void *A_FlickerThreadFunc(void *arg)
     }
     fftw_free(in_flick);
     fftw_free(out_flick);
-    return nullptr;
+    return NULL;
 }
 static double B_Ppointone;
 static double B_Pone;
@@ -1347,7 +1347,7 @@ void *B_FlickerThreadFunc(void *arg)
         }
         fftw_free(in_flick);
         fftw_free(out_flick);
-        return nullptr;
+        return NULL;
 
 }
 static double C_Ppointone;
@@ -1475,7 +1475,7 @@ void *C_FlickerThreadFunc(void *arg)
         }
         fftw_free(in_flick);
         fftw_free(out_flick);
-        return nullptr;
+        return NULL;
 
 }
 /*�����ݽ��жϱ�־*/
@@ -1545,7 +1545,7 @@ void *A_HalfThreadFunc(void *arg)
          sem_post(&A_halfcalc_semaphore);
          sem_wait(&A_halfcalc_semaphore);
     }
-    return nullptr;
+    return NULL;
 }
 char B_voltagedipstartflag = 0;
 char B_voltageswellstartflag = 0;
@@ -1611,7 +1611,7 @@ void *B_HalfThreadFunc(void *arg)
             sem_post(&B_halfcalc_semaphore);
             sem_wait(&B_halfcalc_semaphore);
         }
-        return nullptr;
+        return NULL;
 
 }
 char C_voltagedipstartflag = 0;
@@ -1678,7 +1678,7 @@ void *C_HalfThreadFunc(void *arg)
             sem_post(&C_halfcalc_semaphore);
             sem_wait(&C_halfcalc_semaphore);
         }
-        return nullptr;
+        return NULL;
 }
 measuring_results_union measuring_results;
 void indicators2union(void)

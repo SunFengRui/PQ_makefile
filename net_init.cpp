@@ -53,6 +53,6 @@ for(d=alldevs;d;d=d->next)
 
   pcap_close(device);
 
-  return nullptr;
+  return NULL;
 }
 

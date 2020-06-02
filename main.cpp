@@ -48,41 +48,41 @@ void init()
     timer.it_value.tv_usec=0;
     timer.it_interval.tv_sec=60;
     timer.it_interval.tv_usec=0;
-    setitimer(ITIMER_REAL,&timer,nullptr);   //ITIMER_REAL SIGALRM
+    setitimer(ITIMER_REAL,&timer,NULL);   //ITIMER_REAL SIGALRM
 
 }
 void os_create(void)
 {
-    pthread_mutex_init(&fft_mutex, nullptr);
+    pthread_mutex_init(&fft_mutex, NULL);
     sem_init (&FFT_semaphore , 0, 0);
 
     sem_init (&A_halfcalc_semaphore , 0, 0);
 
     sem_init (&data_send_sem , 0, 0);
 
-    pthread_create(&handlePcap,nullptr,PcapThreadFunc,nullptr);
+    pthread_create(&handlePcap,NULL,PcapThreadFunc,NULL);
     threadsum++;
 
-    pthread_create(&handleFFT_Thread,nullptr,FFT_ThreadFunc, nullptr);
+    pthread_create(&handleFFT_Thread,NULL,FFT_ThreadFunc, NULL);
     threadsum++;
 
-    pthread_create(&handleA_HalfPeriodThread,nullptr,A_HalfThreadFunc, nullptr);
+    pthread_create(&handleA_HalfPeriodThread,NULL,A_HalfThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handleB_HalfPeriodThread,nullptr,B_HalfThreadFunc, nullptr);
+    pthread_create(&handleB_HalfPeriodThread,NULL,B_HalfThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handleC_HalfPeriodThread,nullptr,C_HalfThreadFunc, nullptr);
+    pthread_create(&handleC_HalfPeriodThread,NULL,C_HalfThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handleA_FlickerThread,nullptr,A_FlickerThreadFunc, nullptr);
+    pthread_create(&handleA_FlickerThread,NULL,A_FlickerThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handleB_FlickerThread,nullptr,B_FlickerThreadFunc, nullptr);
+    pthread_create(&handleB_FlickerThread,NULL,B_FlickerThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handleC_FlickerThread,nullptr,C_FlickerThreadFunc, nullptr);
+    pthread_create(&handleC_FlickerThread,NULL,C_FlickerThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handle_CheckThread,nullptr,CheckThreadFunc, nullptr);
+    pthread_create(&handle_CheckThread,NULL,CheckThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handleSocketThread,nullptr,SocketThreadFunc, nullptr);
+    pthread_create(&handleSocketThread,NULL,SocketThreadFunc, NULL);
     threadsum++;
-    pthread_create(&printThread,nullptr,printFunc, nullptr);
+    pthread_create(&printThread,NULL,printFunc, NULL);
     threadsum++;
 }
 DList *list_f;
