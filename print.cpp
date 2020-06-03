@@ -7,11 +7,15 @@ void *printFunc(void *arg)
     static int print_count=0;
     while(1)
     {
+        if(packet_number)
+        {
         printf("     %d     \n",print_count);
         printf("fre: %.5f\n",A_fre);
         printf("loss: %d\n",A_err_flag);
-        printf("                \n")
+        printf("                \n");
         print_count++;
+        packet_number=0;
+        }
         sleep(1);
 
     }

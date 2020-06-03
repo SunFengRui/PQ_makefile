@@ -33,7 +33,7 @@ for(d=alldevs;d;d=d->next)
 //1表示混杂模式
 //0表示一直等到数据包来
 
-  pcap_t * device = pcap_open_live("eth0", 65535, 1, 0, errBuf);
+  pcap_t * device = pcap_open_live("eth1", 65535, 1, 0, errBuf);
 
   if(!device)
   {

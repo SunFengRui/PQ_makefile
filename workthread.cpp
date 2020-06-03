@@ -1514,7 +1514,7 @@ void *A_HalfThreadFunc(void *arg)
         A_result_800half = sqrt((double)((sum_half + sum_half_last) / PeriodPoint));
         sum_half_last = sum_half;
         sum_half = 0;
-        if (A_voltage_dipswellinterrupt_open)
+        if (1) //A_voltage_dipswellinterrupt_open
         {
             A_voltagedipswellinterruptiondetection();  // voltage A_dip/A_swell/interrupy
 
@@ -1531,7 +1531,7 @@ void *A_HalfThreadFunc(void *arg)
                 A_voltageinterruptioncalculation();
             }
         }
-        if (A_flicker_open)
+        if (1)  //A_flicker_open
         {
             A_reg_result_1000half[A_reg_1000cnt] = A_result_400half;  //
             A_reg_1000cnt++;
@@ -1580,7 +1580,7 @@ void *B_HalfThreadFunc(void *arg)
             B_result_800half = sqrt((double)((sum_half + sum_half_last) / PeriodPoint));
             sum_half_last = sum_half;
             sum_half = 0;
-            if (B_voltage_dipswellinterrupt_open)
+            if (1) //B_voltage_dipswellinterrupt_open
             {
                 B_voltagedipswellinterruptiondetection();  //  voltage A_dip/A_swell/interrupy
 
@@ -1597,7 +1597,7 @@ void *B_HalfThreadFunc(void *arg)
                     B_voltageinterruptioncalculation();
                 }
             }
-            if (B_flicker_open)
+            if (1) //B_flicker_open
             {
                 B_reg_result_1000half[B_reg_1000cnt] = B_result_400half;  //
                 B_reg_1000cnt++;
@@ -1647,7 +1647,7 @@ void *C_HalfThreadFunc(void *arg)
             C_result_800half = sqrt((double)((sum_half + sum_half_last) / PeriodPoint));
             sum_half_last = sum_half;
             sum_half = 0;
-            if (C_voltage_dipswellinterrupt_open)
+            if (1)  //C_voltage_dipswellinterrupt_open
             {
                 C_voltagedipswellinterruptiondetection();  //��ѹ�������ݽ����жϼ��  voltage A_dip/A_swell/interrupy
 
@@ -1664,7 +1664,7 @@ void *C_HalfThreadFunc(void *arg)
                     C_voltageinterruptioncalculation();
                 }
             }
-            if (C_flicker_open)
+            if (1) //C_flicker_open
             {
                 C_reg_result_1000half[C_reg_1000cnt] = C_result_400half;  //
                 C_reg_1000cnt++;

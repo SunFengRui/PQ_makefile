@@ -4,14 +4,16 @@
 #  Makefile written by Sun Fengrui
 #  -lnl -lnl-genl
 
-CC            =  gcc
-LIBPCAPPATH   =  /home/sun/SUN/PF_test/libpcap-1.9.1
-LIBFFTWPATH   =  /usr/local/fftw-3.3.8
+CC            =  arm-arago-linux-gnueabi-gcc
+LIBPCAPPATH   =  /usr/local/ARM_lib/libpcap-1.9.1
+LIBFFTWPATH   =  /usr/local/ARM_lib/fftw-3.3.8
+LIBNLPATH     =  /usr/local/ARM_lib/libnl-3.0
 
 INCPATH       =  -I $(LIBFFTWPATH)/include/   \
-                 -I $(LIBPCAPPATH)
+                 -I $(LIBPCAPPATH)/include/
 LIBS          =  -L $(LIBFFTWPATH)/lib/ -lfftw3  \
-                 -L $(LIBPCAPPATH) -lpcap  \
+                 -L $(LIBPCAPPATH)/lib/ -lpcap  \
+		 -L $(LIBNLPATH)/lib/ -lnl -lnl-genl  \
                  -lm -lpthread 
 OBJECTS       =  main.o \
 		 net_init.o \
@@ -24,12 +26,12 @@ OBJECTS       =  main.o \
  		 print.o
 
 
-PQ_target: $(LIBFFTWPATH)/lib/libfftw3.a $(LIBPCAPPATH)/libpcap.a $(OBJECTS)       
+PQ_target: $(LIBFFTWPATH)/lib/libfftw3.a $(LIBPCAPPATH)/lib/libpcap.a $(OBJECTS)       
 	$(CC)  -static -o $@ $(OBJECTS) $(LIBS) $(INCPATH)
 
 
 
-net_init.o:net_init.cpp workthread.h $(LIBPCAPPATH)/pcap.h
+net_init.o:net_init.cpp workthread.h $(LIBPCAPPATH)/include/pcap.h
 	$(CC) -c $(INCPATH) -o $@ $<  
 workthread.o:workthread.cpp V_Dip_Swell_Interrupt.h main.h workthread.h tool.h dlist.h data.h $(LIBFFTWPATH)/include/fftw3.h
 	$(CC) -c $(INCPATH) -o $@ $<    
