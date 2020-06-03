@@ -8,7 +8,7 @@
 #define factor_factor (6553.6)   //104857.6
 #define FFT_8000 8000
 #define HarmonicWave 40
-#define HarmonicWaveParam 5
+#define HarmonicWaveParam 1
 #define PeriodPoint 800
 #define PeriodPointMax 880
 #define AN_BUFFER_LEN_8000	(8000)

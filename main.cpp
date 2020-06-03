@@ -16,6 +16,7 @@ time_t start_time;
 char start_time_s[200];
 int threadsum = 0;
 pthread_mutex_t fft_mutex;    //
+pthread_mutex_t half_mutex; 
 static pthread_t handlePcap;
 static pthread_t handleFFT_Thread, handleA_FlickerThread, handleA_HalfPeriodThread;
 static pthread_t handleB_FlickerThread, handleB_HalfPeriodThread;

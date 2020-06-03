@@ -34,6 +34,7 @@ for(d=alldevs;d;d=d->next)
 //0表示一直等到数据包来
 
   pcap_t * device = pcap_open_live("eth1", 65535, 1, 0, errBuf);
+  printf("detect eth1\n");
 
   if(!device)
   {

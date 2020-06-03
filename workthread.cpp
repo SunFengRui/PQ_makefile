@@ -1493,7 +1493,6 @@ void *A_HalfThreadFunc(void *arg)
     int h;
     while (1)
     {
-
         sem_wait(&A_halfcalc_semaphore);
         A_index_400 = an_buffer_idx / 400;
         if (A_index_400 == 0)
@@ -1516,7 +1515,9 @@ void *A_HalfThreadFunc(void *arg)
         sum_half = 0;
         if (1) //A_voltage_dipswellinterrupt_open
         {
+            pthread_mutex_lock(&half_mutex);
             A_voltagedipswellinterruptiondetection();  // voltage A_dip/A_swell/interrupy
+            pthread_mutex_unlock(&half_mutex);
 
             if (A_voltagedipstartflag)
             {
@@ -1524,7 +1525,7 @@ void *A_HalfThreadFunc(void *arg)
             }
             if (A_voltageswellstartflag)  //
             {
-                A_voltageswellcalculation();
+               A_voltageswellcalculation();
             }
             if ( A_voltageinterruptstartflag) //
             {
@@ -1582,7 +1583,9 @@ void *B_HalfThreadFunc(void *arg)
             sum_half = 0;
             if (1) //B_voltage_dipswellinterrupt_open
             {
-                B_voltagedipswellinterruptiondetection();  //  voltage A_dip/A_swell/interrupy
+            pthread_mutex_lock(&half_mutex);
+              B_voltagedipswellinterruptiondetection();  //  voltage A_dip/A_swell/interrupy
+              pthread_mutex_unlock(&half_mutex);
 
                 if (B_voltagedipstartflag) //
                 {
@@ -1649,7 +1652,9 @@ void *C_HalfThreadFunc(void *arg)
             sum_half = 0;
             if (1)  //C_voltage_dipswellinterrupt_open
             {
+                pthread_mutex_lock(&half_mutex);
                 C_voltagedipswellinterruptiondetection();  //��ѹ�������ݽ����жϼ��  voltage A_dip/A_swell/interrupy
+                 pthread_mutex_unlock(&half_mutex);
 
                 if (C_voltagedipstartflag) //�ݽ�
                 {
@@ -1657,7 +1662,7 @@ void *C_HalfThreadFunc(void *arg)
                 }
                 if (C_voltageswellstartflag)  //����
                 {
-                    C_voltageswellcalculation();
+                   C_voltageswellcalculation();
                 }
                 if (C_voltageinterruptstartflag) //��ѹ�ж�
                 {

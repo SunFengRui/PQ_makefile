@@ -110,9 +110,9 @@ void A_voltagedipswellinterruptiondetection(void)
 	if (A_voltageswellstartflag == 0)
 	{
 
-		if ((A_result_800half> VoltageswellThreshold))   
+		//if ((A_result_800half> VoltageswellThreshold))   
+		if(0)
 		{
-
             time(&now_time);
             Swelltime = localtime(&now_time);
             sprintf(A_swell, "%2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday,
@@ -235,7 +235,8 @@ void B_voltagedipswellinterruptiondetection(void)
 	if (B_voltageswellstartflag == 0)
 	{
 
-		if ((B_result_800half > VoltageswellThreshold))   
+	//	if ((B_result_800half > VoltageswellThreshold))   
+		if(0)
 		{
             time(&now_time);
             Diptime = localtime(&now_time);
@@ -360,7 +361,8 @@ void C_voltagedipswellinterruptiondetection(void)
 	if (C_voltageswellstartflag == 0)
 	{
 
-		if ((C_result_800half > VoltageswellThreshold))   
+		//if ((C_result_800half > VoltageswellThreshold))   
+		if(0)
 		{
             time(&now_time);
             Diptime = localtime(&now_time);

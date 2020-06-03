@@ -12,6 +12,8 @@ extern char start_time_s[200];
 extern int threadsum;
 
 extern pthread_mutex_t fft_mutex;
+extern pthread_mutex_t half_mutex;
+
 extern sem_t FFT_semaphore,A_halfcalc_semaphore,A_flicker_semaphore;
 extern sem_t B_halfcalc_semaphore,B_flicker_semaphore;
 extern sem_t C_halfcalc_semaphore,C_flicker_semaphore;
