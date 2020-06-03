@@ -9,7 +9,7 @@ void *printFunc(void *arg)
     {
         printf("     %d     \n",print_count);
         printf("fre: %.5f\n",A_fre);
-        printf("loss: %d\n",A_fre);
+        printf("loss: %d\n",A_loss);
         printf("                \n")
         print_count++;
         sleep(1);
