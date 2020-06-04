@@ -2,6 +2,8 @@
 合并单元+am3352(树莓派)    无开发环境    makefile编译
 
 
+
+
   宿主机+am3352目标机开发  交叉编译  工具：municom filezilla
 
 宿主机环境配置
