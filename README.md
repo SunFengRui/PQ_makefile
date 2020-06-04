@@ -5,6 +5,8 @@
 
 
   宿主机+am3352目标机开发  交叉编译  工具：minicom filezilla
+  
+  工具下载：链接：https://pan.baidu.com/s/1NvD_IyFdpp-LEi2qFDFdDA 提取码：1x6m 
 
 宿主机环境配置
 
