@@ -26,7 +26,7 @@
    
    cd fftw-3.3.8
    
-   ./configure --host=arm-arago-linux-gnueabi --prefix=/home/sun/SUN/tool/fftw-3.3.8 检查makefile编译器是否为相应目标及编译器(非常重要)
+   ./configure --host=arm-arago-linux-gnueabi --prefix=/home/sun/SUN/tool/fftw-3.3.8 检查makefile编译器是否为相应编译器(非常重要)
    
    
    make
@@ -38,7 +38,7 @@
    
    cd libpcap-1.9.1
    
-   ./configure --host=arm-arago-linux-gnueabi --prefix=/home/sun/SUN/tool/libpcap-1.9.1 检查makefile编译器是否为相应目标及编译器(非常重要)
+   ./configure --host=arm-arago-linux-gnueabi --prefix=/home/sun/SUN/tool/libpcap-1.9.1 检查makefile编译器是否为相应编译器(非常重要)
    
    make
    
@@ -50,7 +50,7 @@
    
    cd fftw-3.3.8
    
-   ./configure --host=arm-arago-linux-gnueabi --prefix=/home/sun/SUN/tool/libnl-3.0 检查makefile编译器是否为相应目标及编译器(非常重要)
+   ./configure --host=arm-arago-linux-gnueabi --prefix=/home/sun/SUN/tool/libnl-3.0 检查makefile编译器是否为相应编译器(非常重要)
    
    make
    
