@@ -4,6 +4,7 @@
 #  Makefile written by Sun Fengrui
 #  -lnl -lnl-genl
 
+TARGET        =  PQ_target
 CC            =  arm-arago-linux-gnueabi-gcc
 LIBPCAPPATH   =  /usr/local/ARM_lib/libpcap-1.9.1
 LIBFFTWPATH   =  /usr/local/ARM_lib/fftw-3.3.8
@@ -26,7 +27,7 @@ OBJECTS       =  main.o \
  		 print.o
 
 
-PQ_target: $(LIBFFTWPATH)/lib/libfftw3.a $(LIBPCAPPATH)/lib/libpcap.a $(OBJECTS)       
+$(TARGET): $(LIBFFTWPATH)/lib/libfftw3.a $(LIBPCAPPATH)/lib/libpcap.a $(OBJECTS)       
 	$(CC)  -static -o $@ $(OBJECTS) $(LIBS) $(INCPATH)
 
 
@@ -51,4 +52,4 @@ data.o:data.cpp
 	$(CC) -c $(INCPATH) -o $@ $<
 
 clean:
-	rm -rf PQ_target *.o
+	rm -rf $(TARGET) *.o
