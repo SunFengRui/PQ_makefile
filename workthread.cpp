@@ -43,7 +43,7 @@ u_int A_err_flag;
 u_short  A_err_current;
 unsigned long  A_err_sum;
 static char A_fre_flag = 0;
-static u_short  A_temp, A_temp_last;
+static u_short  Rcv_count, Rcv_count_last;
 u_short A_flag;
 static u_char error_flag = 0;
 
@@ -85,16 +85,16 @@ void ethernet_protocol_packet_callback(u_char * arg, const struct pcap_pkthdr * 
     an_point *sample;
     (void)(arg);
     sample = (an_point *)(packet + packet_offset);
-    A_temp = ntohs(sample->stand_flag);
+    Rcv_count = ntohs(sample->stand_flag);
 
-    if (A_temp != ((A_temp_last + 1) % mod_value))
+    if (Rcv_count != ((Rcv_count_last + 1) % mod_value))
             {
                 error_flag = 1;
-                A_err_current = (((short)(A_temp - A_temp_last - 1)) % mod_value);
+                A_err_current = (((short)(Rcv_count - Rcv_count_last - 1)) % mod_value);
                 A_err_sum += A_err_current;
                 A_err_flag++;
             }
-    A_temp_last = A_temp;
+    Rcv_count_last = Rcv_count;
     {
     if (an_buffer_idx < AN_BUFFER_880kLEN)
     {
@@ -260,7 +260,7 @@ void ethernet_protocol_packet_callback(u_char * arg, const struct pcap_pkthdr * 
              //if(output_flag==0)
             {
                 output1=an_buffer[an_buffer_idx-20];
-                output2=A_temp;
+                output2=Rcv_count;
                 output_flag=1;
             }
         if (an_buffer_idx % 400 == 0) //400
@@ -1513,26 +1513,35 @@ void *A_HalfThreadFunc(void *arg)
         A_result_800half = sqrt((double)((sum_half + sum_half_last) / PeriodPoint));
         sum_half_last = sum_half;
         sum_half = 0;
-        if (1) //A_voltage_dipswellinterrupt_open
+        if ((A_fre<50.001)&&(A_fre>49.999)) //A_voltage_dipswellinterrupt_open
         {
-            pthread_mutex_lock(&half_mutex);
-            A_voltagedipswellinterruptiondetection();  // voltage A_dip/A_swell/interrupy
-            pthread_mutex_unlock(&half_mutex);
 
+            A_voltagedipswellinterruptiondetection();  // voltage A_dip/A_swell/interrupy
+
+            
             if (A_voltagedipstartflag)
             {
                 A_voltagedipcalculation();
             }
             if (A_voltageswellstartflag)  //
             {
+
                A_voltageswellcalculation();
             }
             if ( A_voltageinterruptstartflag) //
             {
                 A_voltageinterruptioncalculation();
             }
+            
         }
-        if (1)  //A_flicker_open
+            else
+            {
+                A_voltagedipstartflag=0;
+                A_voltageswellstartflag=0;
+                A_voltageinterruptstartflag=0;
+
+            }
+        if  ((A_fre<50.001)&&(A_fre>49.999))   //A_flicker_open
         {
             A_reg_result_1000half[A_reg_1000cnt] = A_result_400half;  //
             A_reg_1000cnt++;
@@ -1581,11 +1590,9 @@ void *B_HalfThreadFunc(void *arg)
             B_result_800half = sqrt((double)((sum_half + sum_half_last) / PeriodPoint));
             sum_half_last = sum_half;
             sum_half = 0;
-            if (1) //B_voltage_dipswellinterrupt_open
+            if  ((B_fre<50.001)&&(B_fre>49.999)) //B_voltage_dipswellinterrupt_open
             {
-            pthread_mutex_lock(&half_mutex);
               B_voltagedipswellinterruptiondetection();  //  voltage A_dip/A_swell/interrupy
-              pthread_mutex_unlock(&half_mutex);
 
                 if (B_voltagedipstartflag) //
                 {
@@ -1599,8 +1606,16 @@ void *B_HalfThreadFunc(void *arg)
                 {
                     B_voltageinterruptioncalculation();
                 }
+                
             }
-            if (1) //B_flicker_open
+            else
+            {
+                B_voltagedipstartflag=0;
+                B_voltageswellstartflag=0;
+                B_voltageinterruptstartflag=0;
+
+            }
+            if  ((B_fre<50.001)&&(B_fre>49.999))  //B_flicker_open
             {
                 B_reg_result_1000half[B_reg_1000cnt] = B_result_400half;  //
                 B_reg_1000cnt++;
@@ -1650,12 +1665,9 @@ void *C_HalfThreadFunc(void *arg)
             C_result_800half = sqrt((double)((sum_half + sum_half_last) / PeriodPoint));
             sum_half_last = sum_half;
             sum_half = 0;
-            if (1)  //C_voltage_dipswellinterrupt_open
+            if  ((C_fre<50.001)&&(C_fre>49.999))   //C_voltage_dipswellinterrupt_open
             {
-                pthread_mutex_lock(&half_mutex);
                 C_voltagedipswellinterruptiondetection();  //��ѹ�������ݽ����жϼ��  voltage A_dip/A_swell/interrupy
-                 pthread_mutex_unlock(&half_mutex);
-
                 if (C_voltagedipstartflag) //�ݽ�
                 {
                     C_voltagedipcalculation();
@@ -1669,7 +1681,14 @@ void *C_HalfThreadFunc(void *arg)
                     C_voltageinterruptioncalculation();
                 }
             }
-            if (1) //C_flicker_open
+            else
+            {
+                C_voltagedipstartflag=0;
+                C_voltageswellstartflag=0;
+                C_voltageinterruptstartflag=0;
+
+            }
+            if ((C_fre<50.001)&&(C_fre>49.999)) //C_flicker_open
             {
                 C_reg_result_1000half[C_reg_1000cnt] = C_result_400half;  //
                 C_reg_1000cnt++;

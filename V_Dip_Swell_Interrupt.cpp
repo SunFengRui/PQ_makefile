@@ -98,9 +98,11 @@ void A_voltagedipswellinterruptiondetection(void)
 		{
             time(&now_time);
             Diptime = localtime(&now_time);
-            sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Diptime->tm_year + 1900, Diptime->tm_mon + 1, Diptime->tm_mday,
+           // sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Diptime->tm_year + 1900, Diptime->tm_mon + 1, Diptime->tm_mday,  \
             Diptime->tm_hour, Diptime->tm_min, Diptime->tm_sec);
-
+			//printf( "A Dip Start Time %2d-%2d-%2d %2d:%2d:%2d\n", Diptime->tm_year + 1900, Diptime->tm_mon + 1, Diptime->tm_mday,  \
+            Diptime->tm_hour, Diptime->tm_min, Diptime->tm_sec);
+          
             gettimeofday (&A_VoltagedipDurationStartTime , &tz);
 			A_voltagedipstartflag = 1;
 			/*Initialize the Ures*/
@@ -110,12 +112,13 @@ void A_voltagedipswellinterruptiondetection(void)
 	if (A_voltageswellstartflag == 0)
 	{
 
-		//if ((A_result_800half> VoltageswellThreshold))   
-		if(0)
+		if ((A_result_800half> VoltageswellThreshold))   
 		{
             time(&now_time);
             Swelltime = localtime(&now_time);
-            sprintf(A_swell, "%2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday,
+            //sprintf(A_swell, "%2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday,    \
+            Swelltime->tm_hour, Swelltime->tm_min, Swelltime->tm_sec);
+			//printf("A Swell Start Time  %2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday,    \
             Swelltime->tm_hour, Swelltime->tm_min, Swelltime->tm_sec);
             gettimeofday (&A_VoltageswellDurationStartTime , &tz);
 
@@ -131,7 +134,9 @@ void A_voltagedipswellinterruptiondetection(void)
 		{
             time(&now_time);
             Interrupttime = localtime(&now_time);
-            sprintf(A_interrupt, "%2d-%2d-%2d %2d:%2d:%2d\n", Interrupttime->tm_year + 1900, Interrupttime->tm_mon + 1, Interrupttime->tm_mday,
+           // sprintf(A_interrupt, "%2d-%2d-%2d %2d:%2d:%2d\n", Interrupttime->tm_year + 1900, Interrupttime->tm_mon + 1, Interrupttime->tm_mday,   \
+            Interrupttime->tm_hour, Interrupttime->tm_min, Interrupttime->tm_sec);
+			//printf("A  Interrupt Start Time %2d-%2d-%2d %2d:%2d:%2d\n", Interrupttime->tm_year + 1900, Interrupttime->tm_mon + 1, Interrupttime->tm_mday,   \
             Interrupttime->tm_hour, Interrupttime->tm_min, Interrupttime->tm_sec);
             gettimeofday (&A_VoltageinterruptionDurationStartTime , &tz);
 			A_voltageinterruptstartflag = 1;
@@ -178,7 +183,7 @@ void B_voltageswellcalculation(void)
 		B_VoltageswellVoltageTemp = B_result_800half;     
 
 	B_VoltageswellVoltageResult = B_VoltageswellVoltageTemp;
-    gettimeofday (&B_VoltageswellDurationEndTime , &tz);
+   gettimeofday (&B_VoltageswellDurationEndTime , &tz);
     B_VoltageswellDurationTime = (B_VoltageswellDurationEndTime.tv_sec-B_VoltageswellDurationStartTime.tv_sec)*1000+(B_VoltageswellDurationEndTime.tv_usec-B_VoltageswellDurationStartTime.tv_usec)/1000;
 
 	if ((B_result_800half <= (VoltageswellThreshold - 0.02*DeclaredInputVoltageUdin)))  
@@ -223,7 +228,7 @@ void B_voltagedipswellinterruptiondetection(void)
 		{
             time(&now_time);
             Diptime = localtime(&now_time);
-            sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Diptime->tm_year + 1900, Diptime->tm_mon + 1, Diptime->tm_mday,
+            //sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Diptime->tm_year + 1900, Diptime->tm_mon + 1, Diptime->tm_mday,  \
             Diptime->tm_hour, Diptime->tm_min, Diptime->tm_sec);
 
             gettimeofday (&B_VoltagedipDurationStartTime , &tz);
@@ -235,12 +240,11 @@ void B_voltagedipswellinterruptiondetection(void)
 	if (B_voltageswellstartflag == 0)
 	{
 
-	//	if ((B_result_800half > VoltageswellThreshold))   
-		if(0)
+		if ((B_result_800half > VoltageswellThreshold))   
 		{
             time(&now_time);
             Diptime = localtime(&now_time);
-            sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday,
+            //sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday,  \
             Swelltime->tm_hour, Swelltime->tm_min, Swelltime->tm_sec);
             gettimeofday (&B_VoltageswellDurationStartTime , &tz);
 			B_voltageswellstartflag = 1;
@@ -255,8 +259,8 @@ void B_voltagedipswellinterruptiondetection(void)
 
 		{
             time(&now_time);
-            Diptime = localtime(&now_time);
-            sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Interrupttime->tm_year + 1900, Interrupttime->tm_mon + 1, Interrupttime->tm_mday,
+           Diptime = localtime(&now_time);
+            //sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Interrupttime->tm_year + 1900, Interrupttime->tm_mon + 1, Interrupttime->tm_mday,   \
             Interrupttime->tm_hour, Interrupttime->tm_min, Interrupttime->tm_sec);
             gettimeofday (&B_VoltageinterruptionDurationStartTime , &tz);
 			B_voltageinterruptstartflag = 1;
@@ -286,7 +290,7 @@ void C_voltagedipcalculation(void)
 
 	C_VoltagedipDepth = C_VoltagedipVoltageTemp;
     gettimeofday (&C_VoltagedipDurationEndTime , &tz);
-        A_VoltagedipDurationTime = (C_VoltagedipDurationEndTime.tv_sec-C_VoltagedipDurationStartTime.tv_sec)*1000+(C_VoltagedipDurationEndTime.tv_usec-C_VoltagedipDurationStartTime.tv_usec)/1000;
+    A_VoltagedipDurationTime = (C_VoltagedipDurationEndTime.tv_sec-C_VoltagedipDurationStartTime.tv_sec)*1000+(C_VoltagedipDurationEndTime.tv_usec-C_VoltagedipDurationStartTime.tv_usec)/1000;
 	if ((C_result_800half >= (VoltagedipThreshold + 0.02*DeclaredInputVoltageUdin)) || (C_result_800half < VoltageinterruptThreshold))      
 	{
 		C_VoltagedipLastVoltageResult = C_VoltagedipDepth;
@@ -305,7 +309,7 @@ void C_voltageswellcalculation(void)
 
 	C_VoltageswellVoltageResult = C_VoltageswellVoltageTemp;
     gettimeofday (&C_VoltageswellDurationEndTime , &tz);
-         C_VoltageswellDurationTime = (C_VoltageswellDurationEndTime.tv_sec-C_VoltageswellDurationStartTime.tv_sec)*1000+(C_VoltageswellDurationEndTime.tv_usec-C_VoltageswellDurationStartTime.tv_usec)/1000;
+    C_VoltageswellDurationTime = (C_VoltageswellDurationEndTime.tv_sec-C_VoltageswellDurationStartTime.tv_sec)*1000+(C_VoltageswellDurationEndTime.tv_usec-C_VoltageswellDurationStartTime.tv_usec)/1000;
 
 	if ((C_result_800half <= (VoltageswellThreshold - 0.02*DeclaredInputVoltageUdin)))  
 	{
@@ -349,8 +353,8 @@ void C_voltagedipswellinterruptiondetection(void)
 		{
             time(&now_time);
             Diptime = localtime(&now_time);
-            sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Diptime->tm_year + 1900, Diptime->tm_mon + 1, Diptime->tm_mday,
-            Diptime->tm_hour, Diptime->tm_min, Diptime->tm_sec);
+            //sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Diptime->tm_year + 1900, Diptime->tm_mon + 1, Diptime->tm_mday,  \
+           Diptime->tm_hour, Diptime->tm_min, Diptime->tm_sec);
 
             gettimeofday (&C_VoltagedipDurationStartTime , &tz);
 			C_voltagedipstartflag = 1;
@@ -361,12 +365,11 @@ void C_voltagedipswellinterruptiondetection(void)
 	if (C_voltageswellstartflag == 0)
 	{
 
-		//if ((C_result_800half > VoltageswellThreshold))   
-		if(0)
+		if ((C_result_800half > VoltageswellThreshold))   
 		{
             time(&now_time);
             Diptime = localtime(&now_time);
-            sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday,
+            //sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Swelltime->tm_year + 1900, Swelltime->tm_mon + 1, Swelltime->tm_mday, \
             Swelltime->tm_hour, Swelltime->tm_min, Swelltime->tm_sec);
             gettimeofday (&C_VoltageswellDurationStartTime , &tz);
 			C_voltageswellstartflag = 1;
@@ -382,7 +385,7 @@ void C_voltagedipswellinterruptiondetection(void)
 		{
             time(&now_time);
             Diptime = localtime(&now_time);
-            sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Interrupttime->tm_year + 1900, Interrupttime->tm_mon + 1, Interrupttime->tm_mday,
+            //sprintf(A_dip, "%2d-%2d-%2d %2d:%2d:%2d\n", Interrupttime->tm_year + 1900, Interrupttime->tm_mon + 1, Interrupttime->tm_mday,     \
             Interrupttime->tm_hour, Interrupttime->tm_min, Interrupttime->tm_sec); 
              gettimeofday (&C_VoltageinterruptionDurationStartTime , &tz);
 			C_voltageinterruptstartflag = 1;
