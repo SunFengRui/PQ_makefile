@@ -6,14 +6,14 @@
 
 TARGET        =  PQ_target
 CC            =  arm-arago-linux-gnueabi-gcc
-LIBPCAPPATH   =  /usr/local/ARM_lib/libpcap-1.9.1
-LIBFFTWPATH   =  /usr/local/ARM_lib/fftw-3.3.8
+PCAPLIBPATH   =  /usr/local/ARM_lib/libpcap-1.9.1
+FFTWLIBPATH   =  /usr/local/ARM_lib/fftw-3.3.8
 LIBNLPATH     =  /usr/local/ARM_lib/libnl-3.0
 
-INCPATH       =  -I $(LIBFFTWPATH)/include/   \
-                 -I $(LIBPCAPPATH)/include/
-LIBS          =  -L $(LIBFFTWPATH)/lib/ -lfftw3  \
-                 -L $(LIBPCAPPATH)/lib/ -lpcap  \
+INCPATH       =  -I $(FFTWLIBPATH)/include/   \
+                 -I $(PCAPLIBPATH)/include/
+LIBS          =  -L $(FFTWLIBPATH)/lib/ -lfftw3  \
+                 -L $(PCAPLIBPATH)/lib/ -lpcap  \
 		 -L $(LIBNLPATH)/lib/ -lnl -lnl-genl  \
                  -lm -lpthread 
 OBJECTS       =  main.o \
@@ -27,14 +27,14 @@ OBJECTS       =  main.o \
  		 print.o
 
 
-$(TARGET): $(LIBFFTWPATH)/lib/libfftw3.a $(LIBPCAPPATH)/lib/libpcap.a $(OBJECTS)       
+$(TARGET): $(FFTWLIBPATH)/lib/libfftw3.a $(PCAPLIBPATH)/lib/libpcap.a $(OBJECTS)       
 	$(CC)  -static -o $@ $(OBJECTS) $(LIBS) $(INCPATH)
 
 
 
-net_init.o:net_init.cpp workthread.h $(LIBPCAPPATH)/include/pcap.h
+net_init.o:net_init.cpp workthread.h $(PCAPLIBPATH)/include/pcap.h
 	$(CC) -c $(INCPATH) -o $@ $<  
-workthread.o:workthread.cpp V_Dip_Swell_Interrupt.h main.h workthread.h tool.h dlist.h data.h $(LIBFFTWPATH)/include/fftw3.h
+workthread.o:workthread.cpp V_Dip_Swell_Interrupt.h main.h workthread.h tool.h dlist.h data.h $(FFTWLIBPATH)/include/fftw3.h
 	$(CC) -c $(INCPATH) -o $@ $<    
 socket_send.o:socket_send.cpp workthread.h main.h socket_send.h dlist.h
 	$(CC) -c $(INCPATH) -o $@ $<
