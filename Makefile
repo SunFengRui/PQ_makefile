@@ -8,13 +8,13 @@ TARGET        =  PQ_target
 CC            =  arm-arago-linux-gnueabi-gcc
 PCAPLIBPATH   =  /usr/local/ARM_lib/libpcap-1.9.1
 FFTWLIBPATH   =  /usr/local/ARM_lib/fftw-3.3.8
-LIBNLPATH     =  /usr/local/ARM_lib/libnl-3.0
+NLLIBPATH     =  /usr/local/ARM_lib/libnl-3.0
 
 INCPATH       =  -I $(FFTWLIBPATH)/include/   \
                  -I $(PCAPLIBPATH)/include/
 LIBS          =  -L $(FFTWLIBPATH)/lib/ -lfftw3  \
                  -L $(PCAPLIBPATH)/lib/ -lpcap  \
-		 -L $(LIBNLPATH)/lib/ -lnl -lnl-genl  \
+		 -L $(NLLIBPATH)/lib/ -lnl -lnl-genl  \
                  -lm -lpthread 
 OBJECTS       =  main.o \
 		 net_init.o \
