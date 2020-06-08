@@ -3,9 +3,8 @@
 #include <unistd.h>
 #include "net_init.h"
 #include "workthread.h"
-#include "socket_send.h"
+#include "result_send.h"
 #include "main.h"
-#include <sys/time.h>
 #include <signal.h>
 #include <time.h>
 #include <string.h>
@@ -21,7 +20,7 @@ static pthread_t handlePcap;
 static pthread_t handleFFT_Thread, handleA_FlickerThread, handleA_HalfPeriodThread;
 static pthread_t handleB_FlickerThread, handleB_HalfPeriodThread;
 static pthread_t handleC_FlickerThread, handleC_HalfPeriodThread;
-static pthread_t handle_CheckThread,handleSocketThread;
+static pthread_t handle_CheckThread,handleResultSendThread;
 static pthread_t printThread;
 sem_t FFT_semaphore,A_halfcalc_semaphore,A_flicker_semaphore;
 sem_t B_halfcalc_semaphore,B_flicker_semaphore;
@@ -38,7 +37,7 @@ void init()
 
     time(&start_time);
     Start_time = localtime(&start_time);
-    sprintf(start_time_s, "%2d年%2d月%2d日 %2d时:%2d分:%2d秒\n", Start_time->tm_year + 1900, Start_time->tm_mon + 1, Start_time->tm_mday,
+    //sprintf(start_time_s, "%2d年%2d月%2d日 %2d时:%2d分:%2d秒\n", Start_time->tm_year + 1900, Start_time->tm_mon + 1, Start_time->tm_mday,  \
     Start_time->tm_hour, Start_time->tm_min, Start_time->tm_sec);  //年月日时分秒
 
     //10s执行第一次，60s循环执行
@@ -81,7 +80,7 @@ void os_create(void)
     threadsum++;
     pthread_create(&handle_CheckThread,NULL,CheckThreadFunc, NULL);
     threadsum++;
-    pthread_create(&handleSocketThread,NULL,SocketThreadFunc, NULL);
+    pthread_create(&handleResultSendThread,NULL,ResultSendThreadFunc, NULL);
     threadsum++;
     pthread_create(&printThread,NULL,printFunc, NULL);
     threadsum++;
