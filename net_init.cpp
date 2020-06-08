@@ -24,7 +24,6 @@ for(d=alldevs;d;d=d->next)
     printf("%d. %s\n",++i,d->name);
     //if(d->description)
     //printf(" (%s)\n",d->description);
-
 }
 //for(d=alldevs,i=0;i<inum-1;d=d->next,i++);
 

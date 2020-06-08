@@ -1704,40 +1704,6 @@ void *C_HalfThreadFunc(void *arg)
         }
         return NULL;
 }
-measuring_results_union measuring_results;
-void indicators2union(void)
-{
-    measuring_results.indicators_array_double[0]  = A_fre;//
-    measuring_results.indicators_array_double[1]  = A_rms;//
-    measuring_results.indicators_array_double[2]  = A_cur_rms;//
-    measuring_results.indicators_array_double[3]  = A_active_power;//
-    measuring_results.indicators_array_double[4]  = A_reactive_power;//
-    measuring_results.indicators_array_double[5]  = A_apparent_power;//
-    measuring_results.indicators_array_double[6]  = A_fre;//
-    measuring_results.indicators_array_double[7]  = A_rms;//
-    measuring_results.indicators_array_double[8]  = A_cur_rms;//
-    measuring_results.indicators_array_double[9]  = A_active_power;//
-    measuring_results.indicators_array_double[10] = A_reactive_power;//
-    measuring_results.indicators_array_double[11] = A_apparent_power;//
-    measuring_results.indicators_array_double[12] = A_cur_rms;//
-    measuring_results.indicators_array_double[13] = A_active_power;//
-    measuring_results.indicators_array_double[14] = A_reactive_power;//
-    measuring_results.indicators_array_double[15] = A_apparent_power;//
-    measuring_results.indicators_array_double[16] = A_fre;//
-    measuring_results.indicators_array_double[17] = A_rms;//
-    measuring_results.indicators_array_double[18] = A_cur_rms;//
-    measuring_results.indicators_array_double[19] = A_active_power;//
-    measuring_results.indicators_array_double[20] = A_reactive_power;//
-    measuring_results.indicators_array_double[21] = A_rms;//
-    measuring_results.indicators_array_double[22] = A_cur_rms;//
-    measuring_results.indicators_array_double[23] = A_active_power;//
-    measuring_results.indicators_array_double[24] = A_reactive_power;//
-    measuring_results.indicators_array_double[25] = A_apparent_power;//
-    measuring_results.indicators_array_double[26] = A_fre;//
-    measuring_results.indicators_array_double[27] = A_rms;//
-    measuring_results.indicators_array_double[28] = A_cur_rms;//
-    measuring_results.indicators_array_double[29] = A_active_power;//
-}
 
 static u_short stand_temp;
 static u_long A_FFT_last;

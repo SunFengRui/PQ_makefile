@@ -173,11 +173,8 @@ typedef struct
 
 #pragma pack()
 
-typedef union _measuring_results_union
-{
-    double  indicators_array_double[30];
-    char    indicators_array_char[240];
-}measuring_results_union;
+
+
 
 extern int packet_number ;
 extern unsigned long an_buffer_idx;
@@ -266,7 +263,6 @@ extern double C_result_800half, C_result_400half;
 extern double uneg;
 extern double uneg_param1, uneg_param2;
 extern double BA_phase_average, CA_phase_average;
-extern measuring_results_union measuring_results;
 extern volatile short an_buffer[AN_BUFFER_880kLEN];
 extern double  A_U_channel_index;
 extern double  A_U_channel_index;
